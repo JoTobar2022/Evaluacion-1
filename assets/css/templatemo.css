@@ -53,7 +53,7 @@ body, ul, li, p, a, label, input, div {
 .text-warning {  color: #ede861 !important;}
 .text-muted { color: #bcbcbc !important;}
 .text-success { color: orangered !important;}
-.text-light { color: #cfd6e1 !important;}
+.text-light { color: white !important;}
 .bg-dark { background-color: #212934 !important;}
 .bg-light { background-color: #e9eef5 !important;}
 .bg-black { background-color: #1d242d !important;}

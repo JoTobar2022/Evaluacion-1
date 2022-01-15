@@ -9,3 +9,10 @@ body a{
 body a:hover{
     color: black;
 }
+
+.register-title{
+    text-align: center;
+    color: orangered;
+    font-family: sans-serif;
+    font-weight: bold;
+}
