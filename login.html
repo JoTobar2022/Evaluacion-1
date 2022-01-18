@@ -119,11 +119,11 @@
     <section class="bg-light">
         <div class="container py-5">
             <div class="col-lg-6 m-auto">
-                <div id="divAlert" style="display: none;">
+                <div id="divAlert" class="alert alert-danger" role="alert" style="display: none;">
                     Error: Existen elementos sin completar en el formulario!
                 </div>
                 <h3 class="register-title">INGRESO</h3>
-                <form action="" method="post" id="templatemo_login">
+                <form action="" method="post" id="formLogin">
                     <label for="txtLoginRut"><b>Rut</b></label>
                     <div class="input-group mb-4">
                         <input type="text" name="txtLoginRut" id="txtLoginRut" class="form-control"
@@ -137,7 +137,9 @@
                     <div class="input-group mb-4">
                     <a href="#"><u>¿Olvidaste tu contraseña?</u></a>
                     </div>
-                    <button type="submit" class="btn btn-primary bg-success">Iniciar Sesión</button>
+                    <div class="col text-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Ingreso</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -242,15 +244,15 @@
         <!-- End Footer -->
     
         <!-- Start Script -->
-        <script src="assets/js/jquery-1.11.0.min.js"></script>
-        <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="assets/js/jquery-3.6.0.js"></script>
+        <!--<script src="assets/js/jquery-1.11.0.min.js"></script>
+        <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>-->
         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/templatemo.js"></script>
         <script src="assets/js/custom.js"></script>
-        <script src="assets/js/jquery-3.6.0.js"></script>
         <!-- End Script -->
         <script>
-            function validarTexto(idInput, patron) {
+            function validaTexto(idInput, patron) {
                 return $(idInput).val().match(patron) ? true : false;
             }
     
@@ -258,30 +260,21 @@
                 return $(idSelect).val() ? true : false;
             }
     
-            var nombrePatron = new RegExp("^[a-z A-Z]{3,50}$");
-            var mailPatron = new RegExp("^[a-zA-Z.-_0-9]+@[a-zA-Z.-0-9]+.[a-zA-Z]{2,4}$");
-            var docPatron = new RegExp("^[0-9]{7,8}.-[k.-0-9]{1,1}$")
+            var rutPatron = new RegExp("^[0-9]{8,9}$");
+            var passPatron = new RegExp("^[0-9]{4,4}$");
     
             $(
                 function () {
-                    $("#register").submit(
+                    $("#formLogin").submit(
                         function (event) {
                             var valido = true;
-                            if (!validaTexto("#txtFullName", nombrePatron)) {
+                            if (!validaTexto("#txtLoginRut", rutPatron)) {
                                 valido = false;
-                                $("#txtFullName").addClass("has-error");
+                                $("#txtLoginRut").addClass("has-error");
                             }
-                            if (!validaTexto("#txtMail", mailPatron)) {
+                            if (!validaTexto("#txtLoginPass", passPatron)) {
                                 valido = false;
-                                $("#txtMail").addClass("has-error");
-                            }
-                            if (!validaTexto("#txtRutPasaporte", docPatron)){
-                                valido = false;
-                                $("#txtRutPasaporte").addClass("has-error");
-                            }
-                            if (!validaSelect("#txtPass")) {
-                                valido = false;
-                                $("#txtPass").addClass("has-error");
+                                $("#txtLoginPass").addClass("has-error");
                             }
                             if (!valido) {
                                 $("#divAlert").addClass("alert");
@@ -296,12 +289,11 @@
                         }
                     );
     
-                    $("#txtNombre").focusin(
+                    $("#formLogin").focusin(
                         function () {
                             $("#divAlert").hide();
-                            $("#txtNombre").removeClass("has-error");
-                            $("#txtMail").removeClass("has-error");
-                            $("#ddlComuna").removeClass("has-error");
+                            $("#txtLoginRut").removeClass("has-error");
+                            $("#txtLoginPass").removeClass("has-error");
                         }
                     );
                 }

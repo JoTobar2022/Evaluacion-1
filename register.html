@@ -17,6 +17,27 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+    <!-- Script Validación Formulario 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#divAlert").hide(); //Debería ocultar la alerta pero no lo hace o.ó
+            $("#register").submit(function(){
+                var mensaje="";
+                if($("#txtFullName").val().trim().length==0){
+                    mensaje="El campo Nombre Completo esta en blanco."
+                }
+                if($("#txtRut").val().trim().length<8){
+                    mensaje="El rut es invalido. Este campo es obligatorio."
+                }
+                if(mensaje!=""){
+                    $("#divAlert").html(mensaje);
+                    $("#divAlert").show();
+                    event.preventDefault();
+                }
+            })
+        })
+    </script>-->
 </head>
 
 <body>
@@ -114,251 +135,368 @@
 
         </div>
     </nav>
-
     <!-- Close Header -->
+
+    <!-- Formulario Registro -->
     <section class="bg-light">
         <div class="container py-5">
             <div class="col-lg-6 m-auto">
-                <div id="divAlert" style="display: none;">
+                <div id="divAlert" class="alert alert-danger" role="alert" style="display: none;"> <!-- style="display: none;" pone invisible el div -->
                     Error: Existen elementos sin completar en el formulario!
                 </div>
-                <h3 class="register-title">REGISTRO</h3>
-                <form action="" method="post" id="register">
+                <form action="#" method="post" id="formRegistro">
+                    <h3 class="register-title">REGISTRO</h3>
                     <h4>Ingresa tus Datos</h4>
-                    <p>El registro nos permitirá conocerte y no tener que solicitarte los datos nuevamente cuando quieras comprar en AnimeStore. Los campos marcados (*) deben ser llenados obligatoriamente.</p>
-                    <label for="txtFullName"><b>Nombre Completo*</b></label>
-                    <div class="input-group mb-4">
-                        <input type="text" name="txtFullName" id="txtFullName" class="form-control"
-                        placeholder="Ingrese nombre completo"/>
+                    <p>El registro nos permitirá conocerte y no tener que solicitarte los datos nuevamente cuando
+                        quieras comprar en AnimeStore. Los campos marcados (*) deben ser llenados obligatoriamente.</p>
+                    <label for="txtNombre"><b>Nombre Completo*</b></label>
+                    <div class="input-group col-md-6 mb-3">
+                        <input type="text" name="txtNombre" id="txtNombre" class="form-control mt-1"
+                            placeholder="Ingrese nombre completo" />
                     </div>
                     <label for="txtRut"><b>Rut*</b></label>
                     <div class="input-group mb-4">
                         <input type="text" name="txtRut" id="txtRut" class="form-control"
-                        placeholder="Ingrese su rut sin puntos ni guión"/>
+                            placeholder="Ingrese su rut sin puntos ni guión" />
                     </div>
                     <label for="txtFono"><b>Teléfono principal móvil o fijo*</b></label>
                     <div class="input-group mb-4">
-                        <input type="tel" name="numFono" id="numFono" class="form-control" pattern="[0-9]{1}-[0-9]{8}"
-                        placeholder="Ejemplo: 240056223">
+                        <input type="text" name="txtFono" id="txtFono" class="form-control"
+                            placeholder="Ejemplo: 240056223"/>
                     </div>
-                    <label for="txtEmail"><b>E-mail*</b></label>
+                    <label for="txtMail"><b>E-mail*</b></label>
                     <div class="input-group mb-4">
-                        <input type="text" name="txtEmail" id="txtEmail" class="form-control"
-                        placeholder="Ejemplo: pab.contreras@gmail.com"/>
+                        <input type="text" name="txtMail" id="txtMail" class="form-control"
+                            placeholder="Ejemplo: pab.contreras@gmail.com" />
                     </div>
                     <h4>Ingresa tu Dirección</h4>
                     <label for="txtDireccion"><b>Dirección*</b></label>
                     <div class="input-group mb-4">
                         <input type="text" name="txtDireccion" id="txtDireccion" class="form-control"
-                        placeholder="Ingrese el nombre de su calle">
+                            placeholder="Ingrese el nombre de su calle">
                     </div>
                     <label for="txtNumero"><b>Número*</b></label>
                     <div class="input-group mb-4">
                         <input type="text" name="txtNumero" id="txtNumero" class="form-control"
-                        placeholder="Ingrese el número">
+                            placeholder="Ingrese el número">
                     </div>
                     <div class="input-group mb-0">
                         <div class="col-lg-2">Casa<input type="radio" name="chkCasaDepto" id="chkCasa" value="true"
-                            class="form-check" checked/></div>
+                                class="form-check" checked /></div>
                         <div class="col-lg-2">Depto<input type="radio" name="chkCasaDepto" id="chkDepto" value="false"
-                            class="form-check"/></div>
-                        <div class="col-lg-2">Oficina<input type="radio" name="chkCasaDepto" id="chkOficina" value="false"
-                            class="form-check"/></div>
+                                class="form-check" /></div>
+                        <div class="col-lg-2">Oficina<input type="radio" name="chkCasaDepto" id="chkOficina"
+                                value="false" class="form-check" /></div>
                     </div>
                     <div class="input-group mb-4">
                         <input type="text" name="txtCDP" id="txtCDP" class="form-control"
-                        placeholder="Ingrese el número de Casa/Depto/Oficina">
+                            placeholder="Ingrese el número de Casa/Depto/Oficina">
                     </div>
-                    <label for="txtComuna"><b>Comuna</b></label>
+                    <label for="ddlComuna"><b>Comuna</b></label>
                     <div class="input-group mb-4">
-                        <input type="text" name="txtComuna" id="txtComuna" class="form-control"
-                        placeholder="Ingrese comuna">
+                        <select name="ddlComuna" id="ddlComuna" class="form-select">
+                            <option>Seleccione una comuna</option>
+                            <option value="1">Santiago Centro</option>
+                            <option value="2">Recoleta</option>
+                            <option value="3">Estación Central</option>
+                            <option value="4">Providencia</option>
+                            <option value="5">Ñuñoa</option>
+                            <option value="6">Vitacura</option>
+                            <option value="7">La Reina</option>
+                            <option value="8">San Miguel</option>
+                            <option value="9">Colina</option>
+                        </select>   
                     </div>
-                    <label for="txtRegion"><b>Región</b></label>
+                    <label for="ddlRegion"><b>Región</b></label>
                     <div class="input-group mb-4">
-                        <input type="text" name="txtRegion" id="txtRegion" class="form-control"
-                        placeholder="Ingrese región">
+                        <select name="ddlRegion" id="ddlRegion" class="form-select">
+                            <option>Seleccione una Región</option>
+                            <option value="1">Arica, Parinacota y Tarapacá</option>
+                            <option value="2">Antofagasta</option>
+                            <option value="3">Atacama y Coquimbo</option>
+                            <option value="4">Valparaíso</option>
+                            <option value="5">O'Higgins</option>
+                            <option value="6">Maule</option>
+                            <option value="7">Ñuble, Biobío y La Araucanía</option>
+                            <option value="8">La Araucanía</option>
+                            <option value="9">Los Ríos y Los Lagos </option>
+                            <option value="10">Los Lagos y Aysén</option>
+                            <option value="11">Magallanes</option>
+                            <option value="12">Metropolitana de Santiago</option>
+                        </select>
                     </div>
                     <label for="txtPass"><b>Contraseña*</b></label>
                     <div class="input-group mb-4">
                         <input type="password" name="txtPass" id="txtPass" class="form-control"
-                        placeholder="**************">
+                            placeholder="4 digitos">
                     </div>
                     <label for="txtConfPass"><b>Confirmar Contraseña*</b></label>
                     <div class="input-group mb-4">
-                        <input type="text" name="txtConfPass" id="txtConfPass" class="form-control"
-                        placeholder="**************">
+                        <input type="password" name="txtConfPass" id="txtConfPass" class="form-control"
+                            placeholder="4 digitos">
                     </div>
-                    <button type="submit" class="btn btn-primary bg-success">Guardar</button>
+                    <div class="col text-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Registro</button>
+                    </div>
                 </form>
             </div>
         </div>
     </section>
+    <!-- Fin Formulario Registro -->
+
     <!-- Start Footer -->
-        <footer class="bg-dark" id="tempaltemo_footer">
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Anime Store</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            Antonio Varas 666, Providencia
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:9-55555555">9-55555555</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:animestore@gmail.com">animestore@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Productos</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Figuras</a></li>
+                        <li><a class="text-decoration-none" href="#">Acrilicos</a></li>
+                        <li><a class="text-decoration-none" href="#">Manga</a></li>
+                        <li><a class="text-decoration-none" href="#">Accesorios</a></li>
+                        <li><a class="text-decoration-none" href="#">Posters</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Más Info</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Inicio</a></li>
+                        <li><a class="text-decoration-none" href="#">Nuestra Empresa</a></li>
+                        <li><a class="text-decoration-none" href="#">Ubicación de la tienda</a></li>
+                        <li><a class="text-decoration-none" href="#">Preguntas Frecuentes</a></li>
+                        <li><a class="text-decoration-none" href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
+                                    class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank"
+                                href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
+                                    class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank"
+                                href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
+                            placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Suscribete</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-black py-3">
             <div class="container">
-                <div class="row">
-    
-                    <div class="col-md-4 pt-5">
-                        <h2 class="h2 text-success border-bottom pb-3 border-light logo">Anime Store</h2>
-                        <ul class="list-unstyled text-light footer-link-list">
-                            <li>
-                                <i class="fas fa-map-marker-alt fa-fw"></i>
-                                Antonio Varas 666, Providencia
-                            </li>
-                            <li>
-                                <i class="fa fa-phone fa-fw"></i>
-                                <a class="text-decoration-none" href="tel:9-55555555">9-55555555</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope fa-fw"></i>
-                                <a class="text-decoration-none" href="mailto:animestore@gmail.com">animestore@gmail.com</a>
-                            </li>
-                        </ul>
-                    </div>
-    
-                    <div class="col-md-4 pt-5">
-                        <h2 class="h2 text-light border-bottom pb-3 border-light">Productos</h2>
-                        <ul class="list-unstyled text-light footer-link-list">
-                            <li><a class="text-decoration-none" href="#">Figuras</a></li>
-                            <li><a class="text-decoration-none" href="#">Acrilicos</a></li>
-                            <li><a class="text-decoration-none" href="#">Manga</a></li>
-                            <li><a class="text-decoration-none" href="#">Accesorios</a></li>
-                            <li><a class="text-decoration-none" href="#">Posters</a></li>
-                        </ul>
-                    </div>
-    
-                    <div class="col-md-4 pt-5">
-                        <h2 class="h2 text-light border-bottom pb-3 border-light">Más Info</h2>
-                        <ul class="list-unstyled text-light footer-link-list">
-                            <li><a class="text-decoration-none" href="#">Inicio</a></li>
-                            <li><a class="text-decoration-none" href="#">Nuestra Empresa</a></li>
-                            <li><a class="text-decoration-none" href="#">Ubicación de la tienda</a></li>
-                            <li><a class="text-decoration-none" href="#">Preguntas Frecuentes</a></li>
-                            <li><a class="text-decoration-none" href="#">Contacto</a></li>
-                        </ul>
-                    </div>
-    
-                </div>
-    
-                <div class="row text-light mb-4">
-                    <div class="col-12 mb-3">
-                        <div class="w-100 my-3 border-top border-light"></div>
-                    </div>
-                    <div class="col-auto me-auto">
-                        <ul class="list-inline text-left footer-icons">
-                            <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                        class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                    href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                        class="fab fa-twitter fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank"
-                                    href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-auto">
-                        <label class="sr-only" for="subscribeEmail">Email address</label>
-                        <div class="input-group mb-2">
-                            <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
-                                placeholder="Email address">
-                            <div class="input-group-text btn-success text-light">Suscribete</div>
-                        </div>
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            Copyright &copy; 2022 Anime Store
+                            | Designed by <a rel="sponsored" href="https://templatemo.com"
+                                target="_blank">TemplateMo</a>
+                        </p>
                     </div>
                 </div>
             </div>
-    
-            <div class="w-100 bg-black py-3">
-                <div class="container">
-                    <div class="row pt-2">
-                        <div class="col-12">
-                            <p class="text-left text-light">
-                                Copyright &copy; 2022 Anime Store
-                                | Designed by <a rel="sponsored" href="https://templatemo.com"
-                                    target="_blank">TemplateMo</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-        </footer>
-        <!-- End Footer -->
-    
-        <!-- Start Script -->
-        <script src="assets/js/jquery-1.11.0.min.js"></script>
-        <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/templatemo.js"></script>
-        <script src="assets/js/custom.js"></script>
-        <script src="assets/js/jquery-3.6.0.js"></script>
-        <!-- End Script -->
-        <script>
-            function validarTexto(idInput, patron) {
-                return $(idInput).val().match(patron) ? true : false;
-            }
-    
-            function validaSelect(isSelect) {
-                return $(idSelect).val() ? true : false;
-            }
-    
-            var nombrePatron = new RegExp("^[a-z A-Z]{3,50}$");
-            var mailPatron = new RegExp("^[a-zA-Z.-_0-9]+@[a-zA-Z.-0-9]+.[a-zA-Z]{2,4}$");
-            var docPatron = new RegExp("^[0-9]{7,8}.-[k.-0-9]{1,1}$")
-    
-            $(
-                function () {
-                    $("#register").submit(
-                        function (event) {
-                            var valido = true;
-                            if (!validaTexto("#txtFullName", nombrePatron)) {
-                                valido = false;
-                                $("#txtFullName").addClass("has-error");
-                            }
-                            if (!validaTexto("#txtMail", mailPatron)) {
-                                valido = false;
-                                $("#txtMail").addClass("has-error");
-                            }
-                            if (!validaTexto("#txtRutPasaporte", docPatron)){
-                                valido = false;
-                                $("#txtRutPasaporte").addClass("has-error");
-                            }
-                            if (!validaSelect("#txtPass")) {
-                                valido = false;
-                                $("#txtPass").addClass("has-error");
-                            }
-                            if (!valido) {
-                                $("#divAlert").addClass("alert");
-                                $("#divAlert").addClass("alert-danger");
-                                $("#divAlert").show();
-                                event.preventDefault();
-                            }
-                            else {
-                                alert("datos enviados");
-    
-                            }
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="assets/js/jquery-3.6.0.js"></script>
+   <!-- <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>-->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/templatemo.js"></script>
+    <script src="assets/js/custom.js"></script>
+   
+
+    <!-- Script Basado en el ejemplo del profesor -->
+    <script>
+        function validaTexto(idInput,patron)
+        {
+            return $(idInput).val().match(patron)?true:false;
+        }
+        function validaSelect(idSelect)
+        {
+            return $(idSelect).val()?true:false;
+        }
+        
+        var nombrePatron = new RegExp("^[a-z A-Z]{3,50}$");
+        var rutPatron = new RegExp("^[0-9]{8,9}$");
+        var fonoPatron = new RegExp("^[0-9]{9,9}$");
+        var mailPatron = new RegExp("^[a-zA-Z.-_0-9]+@[a-zA-Z.-0-9]+.[a-zA-Z]{2,4}$");
+        var dirPatron = new RegExp("^[a-z A-Z]{3,50}$")
+        var numPatron = new RegExp("^[0-9]{1,4}$");
+        var passPatron = new RegExp("^[0-9]{4,4}$");
+
+
+        $(
+            function()
+            {
+                $("#formRegistro").submit(
+                    function(event)
+                    {
+                        var valido = true;
+                        if(!validaTexto("#txtNombre",nombrePatron))
+                        {
+                            valido = false;
+                            $("#txtNombre").addClass("has-error");
                         }
-                    );
-    
-                    $("#txtNombre").focusin(
-                        function () {
-                            $("#divAlert").hide();
-                            $("#txtNombre").removeClass("has-error");
-                            $("#txtMail").removeClass("has-error");
-                            $("#ddlComuna").removeClass("has-error");
+                        if(!validaTexto("#txtRut",rutPatron))
+                        {
+                            valido = false;
+                            $("#txtRut").addClass("has-error");
                         }
-                    );
-                }
-            );
+                        if(!validaTexto("#txtFono",fonoPatron))
+                        {
+                            valido = false;
+                            $("#txtFono").addClass("has-error");
+                        }
+                        if(!validaTexto("#txtMail",mailPatron))
+                        {
+                            valido = false;
+                            $("#txtMail").addClass("has-error");
+                        }
+                        if(!validaTexto("#txtDireccion",dirPatron))
+                        {
+                            valido = false;
+                            $("#txtDireccion").addClass("has-error");
+                        }
+                        if(!validaTexto("#txtNumero",numPatron))
+                        {
+                            valido = false;
+                            $("#txtNumero").addClass("has-error");
+                        }
+                        if(!validaTexto("#txtCDP",numPatron))
+                        {
+                            valido = false;
+                            $("#txtCDP").addClass("has-error");
+                        }
+                        if(!validaSelect("#ddlComuna"))
+                        {
+                            valido = false;
+                            $("#ddlComuna").addClass("has-error");
+                        }
+                        if(!validaSelect("#ddlRegion"))
+                        {
+                            valido = false;
+                            $("#ddlRegion").addClass("has-error");
+                        }
+                        if(!validaTexto("#txtPass",passPatron))
+                        {
+                            valido = false;
+                            $("#txtPass").addClass("has-error");
+                        }
+                        if(!validaTexto("#txtConfPass",passPatron))
+                        {
+                            valido = false;
+                            $("#txtConfPass").addClass("has-error");
+                        }
+                        if(!valido)
+                        {
+                            $("#divAlert").addClass("alert");
+                            $("#divAlert").addClass("alert-danger");
+                            $("#divAlert").show();
+                            event.preventDefault();
+                        }
+                        else
+                        {
+                            alert("datos enviados");
+        
+                        }
+                    }
+                );
+        
+                $("#txtNombre").focusin(
+                    function()
+                    {
+                        $("#divAlert").hide();
+                        $("#txtNombre").removeClass("has-error");
+                        $("#txtRut").removeClass("has-error");
+                        $("#txtFono").removeClass("has-error");
+                        $("#txtMail").removeClass("has-error");
+                        $("#txtDireccion").removeClass("has-error");
+                        $("#txtNumero").removeClass("has-error");
+                        $("#txtCDP").removeClass("has-error");
+                        $("#ddlComuna").removeClass("has-error");
+                        $("#ddlRegion").removeClass("has-error");
+                        $("#txtPass").removeClass("has-error");
+                        $("#txtConfPass").removeClass("has-error");
+                    }
+                );
+            }
+        );
+        
+        
+        
+        
         </script>
-    </body>
-    
-    </html>
+    <!-- Fin script -->
+
+    <!-- Script basado ejemplo de internet --
+        <script>
+        document.addEventListener("DOMContentLoader", function(){
+            document.getElementById("register").addEventListener('submit', validarFormulario)
+        });
+
+        function validarFormulario(evento){
+            evento.preventDefault();
+            var FullName = document.getElementById('txtFullName').value;
+            if(FullName.length == 0){
+                alert('Este campo es obligatorio');
+                return;
+            }
+            var Rut = document.getElementById('txtRut').value;               
+            if(Rut.length >= 1 && Rut.length < 8 || Rut.length > 9){
+                alert('El rut ingresado no es valido. Este campo es obligatorio');
+                return;
+            }
+            this.submit();
+        }
+        </script>
+        !-- Fin Script -->
+</body>
+
+</html>

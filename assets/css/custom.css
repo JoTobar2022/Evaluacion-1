@@ -16,3 +16,15 @@ body a:hover{
     font-family: sans-serif;
     font-weight: bold;
 }
+
+.form-control.has-error {
+    border-color: #dc3545;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+  }
+
+  .form-select.has-error {
+    border-color: #dc3545;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+  }
